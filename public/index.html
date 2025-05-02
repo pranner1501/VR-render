@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>VR Room</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <!-- Chat UI -->
+    <div id="chatbox">
+      <input type="text" id="message" placeholder="Type a message..." />
+    </div>
+    <div id="messages"></div>
+
+    <!-- VR Scene -->
+    <a-scene>
+      <!-- Lights -->
+      <a-entity light="type: ambient; intensity: 1.2"></a-entity>
+      <a-entity light="type: directional; intensity: 0.8" position="1 2 1"></a-entity>
+
+      <!-- Room -->
+      <a-box width="30" height="0.1" depth="30" src="textures/6.jpg" position="0 0 0"></a-box>
+      <a-box width="30" height="0.1" depth="30" src="textures/5.jpg" position="0 10 0"></a-box>
+      <a-box width="30" height="10" depth="0.1" src="textures/1.jpg" position="0 5 -15"></a-box>
+      <a-box width="30" height="10" depth="0.1" src="textures/2.jpg" position="0 5 15"></a-box>
+      <a-box width="0.1" height="10" depth="30" src="textures/3.jpg" position="-15 5 0"></a-box>
+      <a-box width="0.1" height="10" depth="30" src="textures/4.jpg" position="15 5 0"></a-box>
+
+      <!-- Player Boxes original
+      <a-box id="player1" color="purple" width="1" height="2" depth="1" visible="false"></a-box>
+      <a-box id="player2" color="cyan" width="1" height="2" depth="1" visible="false"></a-box> -->
+
+      <!-- Player Avatars second
+      <a-entity id="player1" gltf-model="models/avatar1.glb" scale="0.05 0.05 0.05" visible="false"></a-entity>
+      <a-entity id="player2" gltf-model="models/avatar2.glb" scale="0.05 0.05 0.05" visible="false"></a-entity> -->
+
+      <!-- Player Boxes third -->
+       <!-- add this line after visible = false material="opacity: 0; transparent: true;" -->
+      <a-box id="player1" visible="false" material="opacity: 0; transparent: true;">
+        <a-entity gltf-model="models/avatar1_rotated_Y180.glb" position="0 -1 1" scale="0.05 0.05 0.05"></a-entity>
+      </a-box>
+      <a-box id="player2" visible="false" material="opacity: 0; transparent: true;">
+        <a-entity gltf-model="models/avatar2_rotated_Y180.glb" position="0 -1 1" scale="0.05 0.05 0.05"></a-entity>
+      </a-box>
+
+      <!-- Camera -->
+      <a-entity id="camera"
+        camera
+        wasd-controls="acceleration: 20"
+        look-controls="pointerLockEnabled: true"
+        position="0 1.6 0">
+      </a-entity>
+    </a-scene>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="voice.js"></script>
+  </body>
+</html>
